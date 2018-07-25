@@ -21,4 +21,15 @@ class JsonDataReader implements DataReaderInterface
     {
         return json_decode($data, true);
     }
+
+    /**
+     * @param string $filePath
+     *
+     * @return mixed
+     * @throws \RuntimeException
+     */
+    public function convertFromFile(string $filePath)
+    {
+        throw new \RuntimeException('Method is not implemented');
+    }
 }

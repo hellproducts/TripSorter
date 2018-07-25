@@ -18,4 +18,11 @@ interface DataReaderInterface
      */
     public function convertFromString(string $data);
 
+    /**
+     * @param string $filePath
+     *
+     * @return mixed
+     */
+    public function convertFromFile(string $filePath);
+
 }
