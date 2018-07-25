@@ -1,7 +1,34 @@
 <?php
 define('DS', DIRECTORY_SEPARATOR);
 define('JSON_DATA', __DIR__ . DS . 'json-data' . DS . 'cards.json');
+define('XML_DATA', __DIR__ . DS . 'json-data' . DS . 'cards.xml');
 
 require_once __DIR__ . DS . 'vendor' . DS . 'autoload.php';
 
-$jsonCards = file_get_contents(JSON_DATA);
+// running with JSON data provider
+try {
+    if (\TripSorter\Misc\Util::isFileValid(JSON_DATA)) {
+        $json = file_get_contents(JSON_DATA);
+        $reader = \TripSorter\DataReader\DataReaderFactory::createReader(
+            \TripSorter\DataReader\DataReaderType::JSON
+        );
+        $rawData = $reader->convertFromString($json);
+        $boardingCards = \TripSorter\Misc\Util::createCardsList($rawData);
+    }
+} catch (InvalidArgumentException $iae) {
+    echo 'An error occurred: ' . $iae->getMessage() . PHP_EOL;
+}
+
+// now, doing the same thing, only with xml as a data provider.
+try {
+    if (\TripSorter\Misc\Util::isFileValid(JSON_DATA)) {
+        $xml = file_get_contents(XML_DATA);
+        $reader = \TripSorter\DataReader\DataReaderFactory::createReader(
+            \TripSorter\DataReader\DataReaderType::XML
+        );
+        $rawData = $reader->convertFromString($xml);
+        $boardingCards = \TripSorter\Misc\Util::createCardsList($rawData);
+    }
+} catch (InvalidArgumentException $iae) {
+    echo 'An error occurred: ' . $iae->getMessage() . PHP_EOL;
+}
