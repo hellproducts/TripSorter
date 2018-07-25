@@ -1,10 +1,7 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: mac
- * Date: 25/07/2018
- * Time: 22:13
- */
+namespace TripSorter\Misc;
+
+use TripSorter\BoardingCard\Card;
 
 class Util
 {
@@ -15,10 +12,33 @@ class Util
      * @param string $filePath
      *
      * @return bool
+     * @throws InvalidArgumentException
      */
     public static function isFileValid(string $filePath): bool
     {
-        return is_readable($filePath) && is_file($filePath);
+        $fileIsOk = is_readable($filePath) && is_file($filePath);
+        if (false === $fileIsOk) {
+            throw new InvalidArgumentException(
+                'File path is not valid or you do not have enough rights to read from it'
+            );
+        }
+        return $fileIsOk;
+    }
+
+    /**
+     * @param array $rawData
+     *
+     * @return array
+     */
+    public static function createCardsList(array $rawData): array
+    {
+        $cardsList = [];
+        foreach ($rawData as $item) {
+            $card = new Card();
+            $card->populate($item);
+            $cardsList[] = $card;
+        }
+        return $cardsList;
     }
 
 }
