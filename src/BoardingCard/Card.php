@@ -24,6 +24,12 @@ class Card
     /** @var string */
     private $seat;
 
+    /** @var string */
+    private $gate;
+
+    /** @var string */
+    private $luggage;
+
     /**
      * @param array $data
      *
@@ -82,5 +88,21 @@ class Card
     public function getSeat(): string
     {
         return $this->seat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getGate(): string
+    {
+        return $this->gate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLuggage(): string
+    {
+        return $this->luggage;
     }
 }
