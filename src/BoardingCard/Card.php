@@ -53,7 +53,7 @@ class Card
     /**
      * @return string
      */
-    public function getFrom(): string
+    public function getFrom(): ?string
     {
         return $this->from;
     }
@@ -61,7 +61,7 @@ class Card
     /**
      * @return string
      */
-    public function getTo(): string
+    public function getTo(): ?string
     {
         return $this->to;
     }
@@ -69,7 +69,7 @@ class Card
     /**
      * @return string
      */
-    public function getType(): string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -77,7 +77,7 @@ class Card
     /**
      * @return string
      */
-    public function getIdentifier(): string
+    public function getIdentifier(): ?string
     {
         return $this->identifier;
     }
@@ -85,7 +85,7 @@ class Card
     /**
      * @return string
      */
-    public function getSeat(): string
+    public function getSeat(): ?string
     {
         return $this->seat;
     }
@@ -93,7 +93,7 @@ class Card
     /**
      * @return string
      */
-    public function getGate(): string
+    public function getGate(): ?string
     {
         return $this->gate;
     }
@@ -101,7 +101,7 @@ class Card
     /**
      * @return string
      */
-    public function getLuggage(): string
+    public function getLuggage(): ?string
     {
         return $this->luggage;
     }
