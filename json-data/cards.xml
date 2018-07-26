@@ -12,7 +12,7 @@
     <element>
         <from>Barcelona</from>
         <to>Gerona Airport</to>
-        <type>airport bus</type>
+        <type>bus</type>
     </element>
     <element>
         <from>Stockholm</from>
