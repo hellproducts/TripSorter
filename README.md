@@ -33,5 +33,8 @@ For Windows, the syntax is a bit different:
 ```bash
 php .\runner.php
 ```
-
+If, for some reason, you get namespace related errors, execute the following command:
+```bash
+composer dump-autoload
+```
 <b><i>Enjoy</i></b>
