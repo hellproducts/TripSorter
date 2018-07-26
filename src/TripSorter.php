@@ -6,8 +6,6 @@ use TripSorter\BoardingCard\Card;
 
 /**
  * Class TripSorter
- *
- * @package TripSorter
  */
 class TripSorter
 {
@@ -17,10 +15,25 @@ class TripSorter
     /** @var int */
     private $cardsNo;
 
-    public function __construct(array $cards)
+    /**
+     * @param array $cards
+     *
+     * @return TripSorter
+     */
+    public function setBoardingCards(array $cards): self
     {
         $this->cards = $cards;
-        $this->cardsNo = count($cards);
+        $this->setCardsNo(count($this->cards));
+
+        return $this;
+    }
+
+    /**
+     * @param int $cardsNo
+     */
+    private function setCardsNo(int $cardsNo): void
+    {
+        $this->cardsNo = $cardsNo;
     }
 
     /**
@@ -31,9 +44,9 @@ class TripSorter
         $this->identifyDepartureAndDestination();
         $this->resetListIndexes();
         $this->sortCards();
+
         return $this->cards;
     }
-
 
     private function identifyDepartureAndDestination(): void
     {
@@ -68,7 +81,6 @@ class TripSorter
             /** @var Card $card */
             $currentCard = $this->cards[$i];
             foreach ($this->cards as $idx => $card) {
-
                 if (strcasecmp($currentCard->getTo(), $card->getFrom()) === 0) {
                     $nextIdx = $i + 1;
                     $tmp = $this->cards[$nextIdx];
@@ -80,9 +92,6 @@ class TripSorter
         }
     }
 
-    /**
-     *
-     */
     private function resetListIndexes(): void
     {
         $this->cards = array_values($this->cards);
@@ -91,16 +100,16 @@ class TripSorter
     /**
      * @param Card $firstCard
      * @param Card $secondCard
-     * @param      $hasPreviousTrip
-     * @param      $isLastTrip
+     * @param      $hasPreviousPoint
+     * @param      $isLastPoint
      */
-    private function compareCards(Card $firstCard, Card $secondCard, bool &$hasPreviousTrip, bool &$isLastTrip): void
+    private function compareCards(Card $firstCard, Card $secondCard, bool &$hasPreviousPoint, bool &$isLastPoint): void
     {
         if (strcasecmp($firstCard->getFrom(), $secondCard->getTo()) === 0) {
-            $hasPreviousTrip = true;
+            $hasPreviousPoint = true;
         }
         if (strcasecmp($firstCard->getTo(), $secondCard->getFrom()) === 0) {
-            $isLastTrip = false;
+            $isLastPoint = false;
         }
     }
 
