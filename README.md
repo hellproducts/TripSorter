@@ -8,6 +8,10 @@ about seat assignment, and means of transportation (such as flight number, bus n
 Write an API that lets you sort this kind of list and present back a description of how to complete
 your journey.
 
+#### System Requirements
+* PHP 7.1
+* PHPUnit 7
+
 #### Setup
 In order to run this, you need to have composer installed. Look [here](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx)
 for Linux or OSX environments and [here](https://getcomposer.org/doc/00-intro.md#installation-windows) for
@@ -19,8 +23,15 @@ Once you have a sane environment, execute the following:
 * cd TripSorter
 * composer install
 
-#### System Requirements
-* PHP 7.1
-* PHPUnit 7
+#### Running the app
+In order to execute the app on a Unix (Linux / OSX) machine, type the following command from inside
+the TripSorter directory:
+```bash
+php ./runner.php
+```
+For Windows, the syntax is a bit different:
+```bash
+php .\runner.php
+```
 
 <b><i>Enjoy</i></b>
