@@ -43,7 +43,7 @@ class Card
 
         foreach ($data as $property => $value) {
             if (property_exists(__CLASS__, $property)) {
-                $this->$property = $value;
+                $this->$property = !empty($value) ? $value : null;
             }
         }
 
