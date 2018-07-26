@@ -1,10 +1,13 @@
 <?php
-namespace TripSorter\Misc;
+
+namespace TripSorter\Helper;
 
 use TripSorter\BoardingCard\Card;
 use TripSorter\BoardingCard\CardType;
+use TripSorter\Constant\StringConstant;
+use TripSorter\Validator\CardValidator;
 
-class Util
+class TripSorterHelper
 {
 
     /**
@@ -13,30 +16,26 @@ class Util
      * @param string $filePath
      *
      * @return bool
-     * @throws InvalidArgumentException
      */
-    public static function isFileValid(string $filePath): bool
+    public function isFileValid(string $filePath): bool
     {
-        $fileIsOk = is_readable($filePath) && is_file($filePath);
-        if (false === $fileIsOk) {
-            throw new InvalidArgumentException(
-                'File path is not valid or you do not have enough rights to read from it'
-            );
-        }
-        return $fileIsOk;
+        return is_readable($filePath) && is_file($filePath);
     }
 
     /**
      * @param array $rawData
      *
      * @return array
+     * @throws \TripSorter\Exception\InvalidCardException
      */
-    public static function createCardsList(array $rawData): array
+    public function createCardsList(array $rawData): array
     {
+        $validator = new CardValidator();
         $cardsList = [];
         foreach ($rawData as $item) {
             $card = new Card();
             $card->populate($item);
+            $validator->setCard($card)->validate();
             $cardsList[] = $card;
         }
         return $cardsList;
@@ -47,22 +46,22 @@ class Util
      *
      * @return string
      */
-    public static function stringifyCard(Card $card): string
+    public function stringifyCard(Card $card): string
     {
         switch ($card->getType()) {
             case CardType::TYPE_TRAIN:
                 return sprintf(
-                    'Take %s %s from %s to %s. Sit in seat %s.',
+                    StringConstant::TRIP_TRAIN_MESSAGE,
                     $card->getType(),
                     $card->getIdentifier(),
                     $card->getFrom(),
                     $card->getTo(),
                     $card->getSeat()
-                    );
+                );
                 break;
             case CardType::TYPE_BUS:
                 return sprintf(
-                    'Take the %s from %s to %s. No seat assignment.',
+                    StringConstant::TRIP_BUS_MESSAGE,
                     $card->getType(),
                     $card->getFrom(),
                     $card->getTo()
@@ -70,7 +69,7 @@ class Util
                 break;
             case CardType::TYPE_PLANE:
                 $message = sprintf(
-                    'From %s, take flight %s to %s. Gate %s, seat %s.',
+                    StringConstant::TRIP_PLANE_MESSAGE,
                     $card->getFrom(),
                     $card->getIdentifier(),
                     $card->getTo(),
@@ -78,16 +77,15 @@ class Util
                     $card->getSeat()
                 );
                 if (null !== $card->getLuggage()) {
-                    $message .= sprintf('Baggage drop at ticket counter %s.', $card->getLuggage());
+                    $message .= sprintf(
+                        StringConstant::TRIP_BAGGAGE_DROP_MESSAGE,
+                        $card->getLuggage()
+                    );
                 } else {
-                    $message .= 'Baggage will we automatically transferred from your last leg.';
+                    $message .= StringConstant::TRIP_NO_BAGGAGE_DROP_MESSAGE;
                 }
                 return $message;
                 break;
-            default:
-                return 'You have arrived at your final destination.';
-                break;
-
         }
     }
 
