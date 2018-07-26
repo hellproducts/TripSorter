@@ -6,13 +6,13 @@ define('XML_DATA', __DIR__ . DS . 'json-data' . DS . 'cards.xml');
 require_once __DIR__ . DS . 'vendor' . DS . 'autoload.php';
 
 $helper = new \TripSorter\Helper\TripSorterHelper();
-
+$readerFactory = new \TripSorter\DataReader\DataReaderFactory();
 
 try {
     // running with JSON data provider
     if ($helper->isFileValid(JSON_DATA)) {
         $json = file_get_contents(JSON_DATA);
-        $reader = \TripSorter\DataReader\DataReaderFactory::createReader(
+        $reader = $readerFactory->createReader(
             \TripSorter\DataReader\DataReaderType::JSON
         );
         $rawData = $reader->convertFromString($json);
@@ -26,13 +26,17 @@ try {
     // now, doing the same thing, only with xml as a data provider.
     if ($helper->isFileValid(JSON_DATA)) {
         $xml = file_get_contents(XML_DATA);
-        $reader = \TripSorter\DataReader\DataReaderFactory::createReader(
+        $reader = $readerFactory->createReader(
             \TripSorter\DataReader\DataReaderType::XML
         );
         $rawData = $reader->convertFromString($xml);
         $boardingCards = $helper->createCardsList($rawData);
         showTrip($tripList, $helper);
     }
+} catch (\TripSorter\Exception\DataReaderFactoryException $dfe) {
+    echo 'Error when trying to create a DataReaderInterface object. ' . PHP_EOL .
+        'Message: ' . $ice->getMessage() . PHP_EOL .
+        'Code: ' . $ice->getCode();
 } catch (\TripSorter\Exception\InvalidCardException $ice) {
     echo 'An InvalidCardException occurred. ' . PHP_EOL .
         'Message: ' . $ice->getMessage() . PHP_EOL .
