@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <element>
+        <from>Gerona Airport</from>
+        <gate>45B</gate>
+        <identifier>SK455</identifier>
+        <luggage>344</luggage>
+        <seat>3A</seat>
+        <to>Stockholm</to>
+        <type>plane</type>
+    </element>
+    <element>
+        <from>Barcelona</from>
+        <to>Gerona Airport</to>
+        <type>airport bus</type>
+    </element>
+    <element>
         <from>Stockholm</from>
         <gate>22</gate>
         <identifier>SK22</identifier>
         <seat>7B</seat>
-        <to>New York</to>
+        <to>New York JFK</to>
         <type>plane</type>
     </element>
     <element>
@@ -15,18 +29,5 @@
         <to>Barcelona</to>
         <type>train</type>
     </element>
-    <element>
-        <from>Gerona Airport</from>
-        <gate>45B</gate>
-        <identifier>SK455</identifier>
-        <luggage>334</luggage>
-        <seat>3A</seat>
-        <to>Stockholm</to>
-        <type>plane</type>
-    </element>
-    <element>
-        <from>Barcelona</from>
-        <to>Gerona Airport</to>
-        <type>bus</type>
-    </element>
+
 </root>

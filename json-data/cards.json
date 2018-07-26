@@ -1,5 +1,10 @@
 [
   {
+    "from": "Barcelona",
+    "to": "Gerona Airport",
+    "type": "airport bus"
+  },
+  {
     "from": "Stockholm",
     "to": "New York",
     "type": "plane",
@@ -8,24 +13,19 @@
     "gate": "22"
   },
   {
-    "from": "Madrid",
-    "to": "Barcelona",
-    "type": "train",
-    "identifier": "78A",
-    "seat": "45B"
-  },
-  {
     "from": "Gerona Airport",
     "to": "Stockholm",
     "type": "plane",
     "identifier": "SK455",
     "seat": "3A",
     "gate": "45B",
-    "luggage": "334"
+    "luggage": "344"
   },
   {
-    "from": "Barcelona",
-    "to": "Gerona Airport",
-    "type": "bus"
+    "from": "Madrid",
+    "to": "Barcelona",
+    "type": "train",
+    "identifier": "78A",
+    "seat": "45B"
   }
 ]
