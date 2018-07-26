@@ -3,7 +3,6 @@
 namespace TripSorter\Helper;
 
 use TripSorter\BoardingCard\Card;
-use TripSorter\BoardingCard\CardType;
 use TripSorter\Constant\StringConstant;
 use TripSorter\Validator\CardValidator;
 
@@ -49,7 +48,7 @@ class TripSorterHelper
     public function stringifyCard(Card $card): string
     {
         switch ($card->getType()) {
-            case CardType::TYPE_TRAIN:
+            case 'train':
                 return sprintf(
                     StringConstant::TRIP_TRAIN_MESSAGE,
                     $card->getType(),
@@ -59,7 +58,7 @@ class TripSorterHelper
                     $card->getSeat()
                 );
                 break;
-            case CardType::TYPE_BUS:
+            case 'bus':
                 return sprintf(
                     StringConstant::TRIP_BUS_MESSAGE,
                     $card->getType(),
@@ -67,7 +66,7 @@ class TripSorterHelper
                     $card->getTo()
                 );
                 break;
-            case CardType::TYPE_PLANE:
+            case 'plane':
                 $message = sprintf(
                     StringConstant::TRIP_PLANE_MESSAGE,
                     $card->getFrom(),
@@ -84,6 +83,16 @@ class TripSorterHelper
                 } else {
                     $message .= StringConstant::TRIP_NO_BAGGAGE_DROP_MESSAGE;
                 }
+                return $message;
+                break;
+            default:
+                $message = sprintf(
+                    StringConstant::TRIP_OTHER_TYPE_MESSAGE,
+                    $card->getType(),
+                    $card->getFrom(),
+                    $card->getTo(),
+                    $card->getType()
+                );
                 return $message;
                 break;
         }

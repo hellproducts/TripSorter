@@ -13,6 +13,11 @@
     "gate": "22"
   },
   {
+    "from": "New York",
+    "to": "New Jersey",
+    "type": "bike"
+  },
+  {
     "from": "Gerona Airport",
     "to": "Stockholm",
     "type": "plane",

@@ -51,5 +51,5 @@ function showTrip($tripList, \TripSorter\Helper\TripSorterHelper $helper)
     foreach ($tripList as $card) {
         echo $helper->stringifyCard($card) . PHP_EOL;
     }
-    echo \TripSorter\Constant\StringConstant::TRIP_FINAL_MESSAGE;
+    echo \TripSorter\Constant\StringConstant::TRIP_FINAL_MESSAGE . PHP_EOL;
 }
