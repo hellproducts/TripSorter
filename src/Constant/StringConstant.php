@@ -13,6 +13,8 @@ namespace TripSorter\Constant;
  */
 class StringConstant
 {
+    public CONST JSON_DATA_PROVIDER = 'Running with data from JSON.';
+    public const XML_DATA_PROVIDER = 'Running with data from XML.';
     public const TRIP_FINAL_MESSAGE = 'You have arrived at your final destination.';
     public const TRIP_TRAIN_MESSAGE = 'Take %s %s from %s to %s. Sit in seat %s.';
     public const TRIP_BUS_MESSAGE = 'Take the %s from %s to %s. No seat assignment.';
