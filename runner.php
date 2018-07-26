@@ -20,6 +20,8 @@ try {
     }
 } catch (InvalidArgumentException $iae) {
     echo 'An error occurred: ' . $iae->getMessage() . PHP_EOL;
+} catch (Exception $exception) {
+    echo 'A generic error occurred: ' . $exception->getMessage() . PHP_EOL;
 }
 
 // now, doing the same thing, only with xml as a data provider.
@@ -34,6 +36,8 @@ try {
     }
 } catch (InvalidArgumentException $iae) {
     echo 'An error occurred: ' . $iae->getMessage() . PHP_EOL;
+} catch (Exception $exception) {
+    echo 'A generic error occurred: ' . $exception->getMessage() . PHP_EOL;
 }
 
 foreach($tripList as $card) {
