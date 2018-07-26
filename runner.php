@@ -7,6 +7,7 @@ require_once __DIR__ . DS . 'vendor' . DS . 'autoload.php';
 
 $helper = new \TripSorter\Helper\TripSorterHelper();
 $readerFactory = new \TripSorter\DataReader\DataReaderFactory();
+$sorter = new \TripSorter\TripSorter();
 
 try {
     // running with JSON data provider
@@ -17,20 +18,21 @@ try {
         );
         $rawData = $reader->convertFromString($json);
         $boardingCards = $helper->createCardsList($rawData);
-
-        $sorter = new \TripSorter\TripSorter($boardingCards);
-        $tripList = $sorter->retrieveSortedTrip();
+        $tripList = $sorter->setBoardingCards($boardingCards)
+            ->retrieveSortedTrip();
         showTrip($tripList, $helper);
     }
 
     // now, doing the same thing, only with xml as a data provider.
-    if ($helper->isFileValid(JSON_DATA)) {
+    if ($helper->isFileValid(XML_DATA)) {
         $xml = file_get_contents(XML_DATA);
         $reader = $readerFactory->createReader(
             \TripSorter\DataReader\DataReaderType::XML
         );
         $rawData = $reader->convertFromString($xml);
         $boardingCards = $helper->createCardsList($rawData);
+        $tripList = $sorter->setBoardingCards($boardingCards)
+            ->retrieveSortedTrip();
         showTrip($tripList, $helper);
     }
 } catch (\TripSorter\Exception\DataReaderFactoryException $dfe) {
@@ -44,7 +46,6 @@ try {
 } catch (Exception $exception) {
     echo 'A generic error occurred: ' . $exception->getMessage() . PHP_EOL;
 }
-
 
 function showTrip($tripList, \TripSorter\Helper\TripSorterHelper $helper)
 {
