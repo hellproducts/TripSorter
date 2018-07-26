@@ -1,14 +1,13 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: mac
- * Date: 25/07/2018
- * Time: 22:58
- */
 
 namespace TripSorter\DataReader;
 
+use TripSorter\Exception\DataReaderFactoryException;
 
+/**
+ * Class DataReaderFactory
+ * @package TripSorter\DataReader
+ */
 class DataReaderFactory
 {
 
@@ -16,9 +15,9 @@ class DataReaderFactory
      * @param string $type
      *
      * @return DataReaderInterface
-     * @throws \InvalidArgumentException
+     * @throws DataReaderFactoryException
      */
-    public static function createReader(string $type): DataReaderInterface
+    public function createReader(string $type): DataReaderInterface
     {
         switch ($type) {
             case DataReaderType::JSON:
@@ -28,7 +27,10 @@ class DataReaderFactory
                 return new XmlDataReader();
                 break;
             default:
-                throw new \InvalidArgumentException('Type' . $type . ' is not a valid data reader type');
+                throw new DataReaderFactoryException(
+                    'Type' . $type . ' is not a valid data reader type',
+                    DataReaderFactoryException::INVALID_TYPE_READER
+                );
         }
     }
 
