@@ -14,6 +14,9 @@ try {
         );
         $rawData = $reader->convertFromString($json);
         $boardingCards = \TripSorter\Misc\Util::createCardsList($rawData);
+
+        $sorter = new \TripSorter\TripSorter($boardingCards);
+        $tripList = $sorter->retrieveSortedTrip();
     }
 } catch (InvalidArgumentException $iae) {
     echo 'An error occurred: ' . $iae->getMessage() . PHP_EOL;
@@ -32,3 +35,8 @@ try {
 } catch (InvalidArgumentException $iae) {
     echo 'An error occurred: ' . $iae->getMessage() . PHP_EOL;
 }
+
+foreach($tripList as $card) {
+    echo \TripSorter\Misc\Util::stringifyCard($card) . PHP_EOL;
+}
+echo 'You have arrived at your final destination.' . PHP_EOL;
