@@ -37,4 +37,6 @@ If, for some reason, you get namespace related errors, execute the following com
 ```bash
 composer dump-autoload
 ```
+
+To add new cards, juat edit the json / xml file located in data folder. Eaxh new entry must have a minimum of attributes: from, to and type.
 <b><i>Enjoy</i></b>
