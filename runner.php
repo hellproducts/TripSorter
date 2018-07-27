@@ -1,7 +1,7 @@
 <?php
 define('DS', DIRECTORY_SEPARATOR);
-define('JSON_DATA', __DIR__ . DS . 'json-data' . DS . 'cards.json');
-define('XML_DATA', __DIR__ . DS . 'json-data' . DS . 'cards.xml');
+define('JSON_DATA', __DIR__ . DS . 'data' . DS . 'cards.json');
+define('XML_DATA', __DIR__ . DS . 'data' . DS . 'cards.xml');
 
 require_once __DIR__ . DS . 'vendor' . DS . 'autoload.php';
 
